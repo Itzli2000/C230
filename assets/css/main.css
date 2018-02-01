@@ -3,6 +3,10 @@ body {
   background: -webkit-linear-gradient(to top, #dfe9f3 0%, white 100%);
   background: linear-gradient(to top, #dfe9f3 0%, white 100%); }
 
+h1, h2, h3, h4, h5 {
+  color: #4B498D;
+  margin-top: 0; }
+
 #container {
   width: 100%;
   max-width: 1500px;
@@ -13,7 +17,7 @@ body {
   font-weight: bold; }
 
 .activemenu {
-  color: #37dc7d !important; }
+  color: #4B498D !important; }
 
 /*Slideshow styles*/
 .slideshow-container {
@@ -92,6 +96,23 @@ body {
     opacity: .4; }
   to {
     opacity: 1; } }
+/*First section styles*/
+#What {
+  background: url(../images/bck.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+#What p {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto; }
+
 @media screen and (min-width: 860px) {
   .text {
     font-size: 35px; }

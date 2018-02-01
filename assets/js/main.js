@@ -45,7 +45,7 @@ $('a[href*="#"]')
     // Figure out element to scroll to
   var target = $(this.hash);
   var navHeight = $('#mainNav').height();
-  var scrollToPosition = target.offset().top - (navHeight);
+  var scrollToPosition = target.offset().top - (navHeight*2);
   target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
     // Does a scroll target exist?
     if (target.length) {
