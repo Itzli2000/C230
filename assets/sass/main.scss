@@ -9,6 +9,13 @@ body {
   max-width: 1500px;
   margin: 0 auto;
 }
+/*Styles for menu items*/
+#mainNav a {
+  font-weight: bold;
+}
+.activemenu {
+  color: #37dc7d !important;
+}
 /*Slideshow styles*/
 .slideshow-container {
   width: 100%;
