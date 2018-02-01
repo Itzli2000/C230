@@ -1,4 +1,20 @@
 var data;
+
+// Function to manage slider
+var slideIndex = 0;
+showSlides(slideIndex);
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none"; 
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1} 
+    slides[slideIndex-1].style.display = "block"; 
+  setTimeout(showSlides, 7000);
+}
 // Function to get data from json url file
 // and covert it to js object
 var txtFile = new XMLHttpRequest();
