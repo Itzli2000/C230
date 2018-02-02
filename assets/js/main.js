@@ -45,7 +45,7 @@ $('a[href*="#"]')
     // Figure out element to scroll to
   var target = $(this.hash);
   var navHeight = $('#mainNav').height();
-  var scrollToPosition = target.offset().top - (navHeight*2);
+  var scrollToPosition = target.offset().top;
   target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
     // Does a scroll target exist?
     if (target.length) {
@@ -61,6 +61,13 @@ $('a[href*="#"]')
       });
     }
   }
+});
+
+// Smooth scroll on 'what' section button
+$("#btndown").click(function() {
+  $('html,body').animate({
+    scrollTop: $("#info").offset().top},
+    2000);
 });
 
 // Automatic close the navigation bar
@@ -89,24 +96,43 @@ txtFile.onreadystatechange = function() {
 txtFile.send(null);
 
 // Function to show data object on frontend
+var latlngarray =[];
 function render(){
   var html = data.map(function(message,index){
+    latlngarray.push(message.address.location.lat +','+message.address.location.lng);
     return(`
-      <div class="message">
-      <p class="card-description">${message.id}</p>
-      <h3 class="card-title">${message.name}</h3>
-      <p class="card-description">${message.contact.site}</p>
-      <div class="card-price">${message.contact.email}</div>
-      <div class="card-price">${message.contact.phone}</div>
-      <div class="card-price">${message.address.street}</div>
-      <div class="card-price">${message.address.city}</div>
-      <div class="card-price">${message.address.state}</div>
-      <div class="card-price">${message.address.location.lat}</div>
-      <div class="card-price">${message.address.location.lng}</div>
-      <div class="card-price">${message.rating}</div>
+      <div class="cardContainer my-3 p-3 d-flex flex-column justify-content-around" style="width: 20rem;">
+      <div class="card-name">
+      <h4>${message.name}</h4>
+      <a class="card-site" href="${message.contact.site}"><img class="contact-icon" src="assets/images/site.png" alt="rest info">${message.contact.site}</a>
+      </div>
+      <ul id="contact" class="list-group list-group-flush">
+      <li class="list-group-item card-email"><img class="contact-icon" src="assets/images/mail.png" alt="rest info"> ${message.contact.email}</li>
+      <li class="list-group-item card-phone"><img class="contact-icon" src="assets/images/phone.png" alt="rest info"> ${message.contact.phone}</li>
+      </ul>
+      <ul id="address" class="list-group list-group-flush">
+      <li class="list-group-item card-street"><img class="contact-icon" src="assets/images/map.png" alt="rest info">${message.address.street}</li>
+      <li class="list-group-item card-city"><img class="contact-icon" src="assets/images/minus.png" alt="rest info">${message.address.city}</li>
+      <li class="list-group-item card-state"><img class="contact-icon" src="assets/images/minus.png" alt="rest info">${message.address.state}</li>
+      </ul>
+      <div id="rate">
+      ${message.rating}
+      <img class="star-icon" src="assets/images/star.png" alt="rest info">
+      </div>
       </div>
       `);
   }).join('  ');
+  document.getElementById('cards').innerHTML = html;
+}
 
-  document.getElementById('images').innerHTML = html;
+function initMap() {
+  var uluru = {lat: -25.363, lng: 131.044};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
 }

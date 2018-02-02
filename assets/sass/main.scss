@@ -1,7 +1,7 @@
 body {
-  background: #dfe9f3;
-  background: -webkit-linear-gradient(to top, #dfe9f3 0%, white 100%);
-  background: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  background: #c3cfe2;
+  background: -webkit-linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 h1,h2,h3,h4,h5 {
   color: #4B498D;
@@ -100,18 +100,154 @@ h1,h2,h3,h4,h5 {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  min-height: 300px;
+  min-height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 #What p {
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
 }
-
+#btndown {
+  position: absolute;
+  bottom: 15px;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  background: #4B498D;
+  cursor: pointer;
+  font-size: 30px;
+  transition: all 0.5s ease-in-out;
+}
+#btndown:hover {
+  background: #7471D9;
+}
+/*Info section styles*/
+#info .row > * {
+  max-width: 300px;
+  margin: 0 auto;
+}
+.img-cont {
+  width: 170px;
+  height: 170px;
+  border: 2px solid #4B498D;
+  border-radius: 100%;
+}
+/*Second section styles*/
+#How {
+  background: #FFF;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.how-cont {
+  width: 140px;
+  height: 140px;
+  border: 2px solid #4B498D;
+  border-radius: 100%;
+}
+.how-img {
+  width: 80%;
+  height: auto;
+}
+#map {
+ width: 100%;
+ height: 400px;
+ background-color: grey;
+}
+/*Cards styles*/
+#cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.cardContainer {
+  position: relative;
+}
+.card-name {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px 10px 5px 5px;
+  background: #EE9793;
+  background: -webkit-linear-gradient(135deg, #EE9793 0%, #EB524A 100%);
+  background: linear-gradient(135deg, #EE9793 0%, #EB524A 100%);
+}
+.card-name h4 {
+  color: #FFF;
+}
+.card-name a {
+  text-decoration: none;
+  color: #ffbf43
+}
+.card-name a:hover {
+  font-weight: bold;
+}
+#contact,
+#address {
+  background: #EE9793;
+  background: -webkit-linear-gradient(135deg, #EE9793 0%, #EB524A 100%);
+  background: linear-gradient(135deg, #EE9793 0%, #EB524A 100%); 
+  padding: 5px 24px;
+  margin-top: 10px;
+}
+#contact {
+  border-radius: 5px;
+  min-height: 100px;
+}
+#address {
+  border-radius: 5px 5px 10px 10px;
+}
+.list-group-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .3rem 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  border: none; 
+  word-break: break-all;
+}
+.contact-icon {
+  width: 15px;
+  height: auto;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+.star-icon {
+  position: absolute;
+  width: 90%;
+  height: auto;
+  margin-left: 2px;
+  top: 0px;
+  left: 0px;
+}
+#rate {
+  position: absolute;
+  right: -10px;
+  top: 101px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffbf43;
+  font-size: 18px;
+}
 
 
 
