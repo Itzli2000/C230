@@ -123,7 +123,7 @@ function render(data){
       `);
   }).join('  ');
   document.getElementById('cards').innerHTML = html;
-  // initMap(latlngarray);
+  initMap(latlngarray);
   mainMap(data);
 }
 
@@ -166,7 +166,7 @@ function mainMap(array) {
     fillOpacity: 0.1,
     map: map,
     center: uluru,
-    radius: 100
+    radius: 200
   });
 
   $.each( array, function( key, value ) {
@@ -197,9 +197,20 @@ function mainMap(array) {
     });
   });
 
+  var markcount = 0;
+  var newarray = [];
   google.maps.event.addListener(map, 'click', function(event) {
     var result = [event.latLng.lat(), event.latLng.lng()];
     transition(result);
+  }).then(function(value) {
+    $.each( array, function( key, value ) {
+      if (map.getBounds().contains(latlngarray[i].getPosition())) 
+      {
+        markcount = markcount + 1;
+        newarray.push(latlngarray[i]);
+      } 
+    });
+    console.log(newarray);
   });
 
   // Move marker on map
