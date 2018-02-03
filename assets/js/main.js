@@ -281,9 +281,9 @@ function sortRate() {
   $.each( data, function( key, value ) {
     data.sort(function(a,b){
       var rateA = a.rating, rateB = b.rating
-      if (rateA < rateB)
-        return -1 
       if (rateA > rateB)
+        return -1 
+      if (rateA < rateB)
         return 1
       return 0
     });
