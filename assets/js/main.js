@@ -1,5 +1,5 @@
 var data;
-// mainMap();
+mainMap();
 
 // Function to manage slider
 var slideIndex = 0;
@@ -124,7 +124,7 @@ function render(){
       `);
   }).join('  ');
   document.getElementById('cards').innerHTML = html;
-  // initMap(latlngarray);
+  initMap(latlngarray);
 }
 
 function initMap(array) {

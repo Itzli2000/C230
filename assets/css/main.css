@@ -217,6 +217,23 @@ h1, h2, h3, h4, h5 {
   background: -webkit-linear-gradient(135deg, #4A4E69 25%, #22223B 100%);
   background: linear-gradient(135deg, #4A4E69 25%, #22223B 100%); }
 
+.recom-card-name {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px 10px 2px 2px;
+  background: #4A4E69;
+  background: -webkit-linear-gradient(135deg, #4A4E69 25%, #22223B 100%);
+  background: linear-gradient(135deg, #4A4E69 25%, #22223B 100%); }
+
+.recom-card-name h4 {
+  color: #FFF;
+  margin: 10px 0;
+  text-transform: uppercase; }
+
 .card-name h4 {
   color: #FFF; }
 
