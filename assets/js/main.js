@@ -157,7 +157,17 @@ function mainMap(array) {
     position: uluru,
     map: map
   });
-  console.log(array);
+
+  var Circle = new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.1,
+    map: map,
+    center: uluru,
+    radius: 100
+  });
 
   $.each( array, function( key, value ) {
     var latLng = new google.maps.LatLng(array[key].address.location.lat, array[key].address.location.lng);
@@ -186,6 +196,49 @@ function mainMap(array) {
       infowindow.open(map, marker);
     });
   });
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    var result = [event.latLng.lat(), event.latLng.lng()];
+    transition(result);
+  });
+
+  // Move marker on map
+  var numDeltas = 100;
+  var delay = 10;
+  var i = 0;
+  var deltaLat;
+  var deltaLng;
+  var currpos = [19.44005705371313, -99.12704709742486];
+
+  function transition(result){
+    i = 0;
+    deltaLat = (result[0] - currpos[0])/numDeltas;
+    deltaLng = (result[1] - currpos[1])/numDeltas;
+    moveMarker();
+  }
+
+  function moveMarker(){
+    currpos[0] += deltaLat;
+    currpos[1] += deltaLng;
+    var latlng = new google.maps.LatLng(currpos[0], currpos[1]);
+    marker.setTitle("Latitude:"+currpos[0]+" | Longitude:"+currpos[1]);
+    marker.setPosition(latlng);
+    Circle.setMap(null);
+    Circle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: latlng,
+      radius: 100
+    });
+    if(i!=numDeltas){
+      i++;
+      setTimeout(moveMarker, delay);
+    }
+  }
 }
 
 
