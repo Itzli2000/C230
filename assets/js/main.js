@@ -1,5 +1,4 @@
 var data;
-mainMap();
 
 // Function to manage slider
 var slideIndex = 0;
@@ -97,7 +96,7 @@ txtFile.send(null);
 
 // Function to show data object on frontend
 var latlngarray =[];
-function render(){
+function render(data){
   var html = data.map(function(message,index){
     latlngarray.push(message.address.location.lat +','+message.address.location.lng);
     return(`
@@ -124,9 +123,11 @@ function render(){
       `);
   }).join('  ');
   document.getElementById('cards').innerHTML = html;
-  initMap(latlngarray);
+  // initMap(latlngarray);
+  mainMap(data);
 }
 
+// Function to load each restaurant map
 function initMap(array) {
   $.each( array, function( key, value ) {
     var latLng = new google.maps.LatLng(array[key].split(",")[0], array[key].split(",")[1]);
@@ -135,6 +136,7 @@ function initMap(array) {
       zoom: 14,
       center: latLng
     });
+
     var marker = new google.maps.Marker({
       position: latLng,
       map: map
@@ -142,15 +144,47 @@ function initMap(array) {
   });
 }
 
+
+// Map to show all positions
 function mainMap(array) {
   var uluru = {lat: 19.44005705371313, lng: -99.12704709742486};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
+    zoom: 16,
     center: uluru
   });
+
   var marker = new google.maps.Marker({
     position: uluru,
     map: map
+  });
+  console.log(array);
+
+  $.each( array, function( key, value ) {
+    var latLng = new google.maps.LatLng(array[key].address.location.lat, array[key].address.location.lng);
+    
+    var contentString =`
+    <div id="content">
+    <div id="siteNotice">
+    </div>
+    <h1 id="firstHeading" class="firstHeading">${array[key].name}</h1>
+    <div id="bodyContent">
+    <p>${array[key].contact.site}<br>${array[key].rating}<i class="fa fa-star-o" aria-hidden="true"></i></p>
+    </div>
+    </div>
+    `;
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      maxWidth: 200
+    });
+
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
   });
 }
 
