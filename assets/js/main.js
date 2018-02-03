@@ -104,20 +104,20 @@ function render(){
       <div class="cardContainer my-3 p-3 d-flex flex-column justify-content-around" style="width: 20rem;">
       <div class="card-name">
       <h4>${message.name}</h4>
-      <a class="card-site" href="${message.contact.site}"><img class="contact-icon" src="assets/images/site.png" alt="rest info">${message.contact.site}</a>
+      <a class="card-site" href="${message.contact.site}"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;${message.contact.site}</a>
       </div>
       <ul id="contact" class="list-group list-group-flush">
-      <li class="list-group-item card-email"><img class="contact-icon" src="assets/images/mail.png" alt="rest info"> ${message.contact.email}</li>
-      <li class="list-group-item card-phone"><img class="contact-icon" src="assets/images/phone.png" alt="rest info"> ${message.contact.phone}</li>
+      <li class="list-group-item card-email"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;${message.contact.email}</li>
+      <li class="list-group-item card-phone"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;${message.contact.phone}</li>
       </ul>
       <ul id="address" class="list-group list-group-flush">
-      <li class="list-group-item card-street"><img class="contact-icon" src="assets/images/map.png" alt="rest info">${message.address.street}</li>
-      <li class="list-group-item card-city"><img class="contact-icon" src="assets/images/minus.png" alt="rest info">${message.address.city}</li>
-      <li class="list-group-item card-state"><img class="contact-icon" src="assets/images/minus.png" alt="rest info">${message.address.state}</li>
+      <li class="list-group-item card-street"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;${message.address.street}</li>
+      <li class="list-group-item card-city"><i class="fa fa-map-signs" aria-hidden="true"></i>&nbsp;${message.address.city}</li>
+      <li class="list-group-item card-state"><i class="fa fa-map-signs" aria-hidden="true"></i>&nbsp;${message.address.state}</li>
       </ul>
       <div id="rate">
-      ${message.rating}
-      <img class="star-icon" src="assets/images/star.png" alt="rest info">
+      <p>${message.rating}</p>
+      <i class="fa fa-star-o star-icon" aria-hidden="true"></i>
       </div>
       </div>
       `);
