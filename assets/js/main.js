@@ -1,5 +1,3 @@
-var data;
-
 // Function to manage slider
 var slideIndex = 0;
 showSlides(slideIndex);
@@ -16,7 +14,7 @@ function showSlides() {
   setTimeout(showSlides, 7000);
 }
 
-// Active class for menu
+// Function to manage active class for menu items
 (function($) {
   $("#mainNav li a").on("click", function(e) {
     e.preventDefault();
@@ -71,6 +69,7 @@ $("#btndown").click(function() {
 });
 
 // Automatic close the navigation bar
+// on mobile devices
 $('.navbar-collapse a').click(function(){
   $(".navbar-collapse").collapse('hide');
 });
@@ -78,6 +77,7 @@ $('.navbar-collapse a').click(function(){
 
 // Function to get data from json url file
 // and covert it to js object
+var data;
 var txtFile = new XMLHttpRequest();
 txtFile.open("GET", "https://s3-us-west-2.amazonaws.com/lgoveabucket/data_melp.json", true);
 txtFile.onreadystatechange = function() {
@@ -123,11 +123,13 @@ function render(data){
       `);
   }).join('  ');
   document.getElementById('cards').innerHTML = html;
+  // Call to map render functions
   initMap(latlngarray);
   mainMap(data);
 }
 
 // Function to load each restaurant map
+// on cards
 function initMap(array) {
   $.each( array, function( key, value ) {
     var latLng = new google.maps.LatLng(array[key].split(",")[0], array[key].split(",")[1]);
@@ -144,19 +146,19 @@ function initMap(array) {
 }
 
 
-// Map to show all positions
+// Map to show all positions, on search section
 function mainMap(array) {
   var uluru = {lat: 19.44005705371313, lng: -99.12704709742486};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: uluru
   });
-
+  // First marker
   var marker = new google.maps.Marker({
     position: uluru,
     map: map
   });
-
+  // Circle area
   var Circle = new google.maps.Circle({
     strokeColor: '#FF0000',
     strokeOpacity: 0.8,
@@ -167,10 +169,9 @@ function mainMap(array) {
     center: uluru,
     radius: 200
   });
-
+  // Iteration function to add all restaurants markers
   $.each( array, function( key, value ) {
     var latLng = new google.maps.LatLng(array[key].address.location.lat, array[key].address.location.lng);
-    
     var contentString =`
     <div id="content">
     <div id="siteNotice">
@@ -181,12 +182,12 @@ function mainMap(array) {
     </div>
     </div>
     `;
-
+    // Add info window to each marker
     var infowindow = new google.maps.InfoWindow({
       content: contentString,
       maxWidth: 200
     });
-
+    // Add each restaurant marker
     var marker = new google.maps.Marker({
       position: latLng,
       map: map
@@ -195,15 +196,16 @@ function mainMap(array) {
       infowindow.open(map, marker);
     });
   });
-
+  // Call function to move first marker
   var markcount = 0;
   google.maps.event.addListener(map, 'click', function(event) {
     var result = [event.latLng.lat(), event.latLng.lng()];
     transition(result);
-    getResult();
+    // getResult();
   });
 
 
+  // Function to show restaurants on circle area
   var newarray = [];
   function getResult() {
     $.each( data, function( key, value ) {
@@ -224,6 +226,7 @@ function mainMap(array) {
   var deltaLng;
   var currpos = [19.44005705371313, -99.12704709742486];
 
+  // Function to add smooth transitions
   function transition(result){
     i = 0;
     deltaLat = (result[0] - currpos[0])/numDeltas;
@@ -231,6 +234,7 @@ function mainMap(array) {
     moveMarker();
   }
 
+  // Function to move marker
   function moveMarker(){
     currpos[0] += deltaLat;
     currpos[1] += deltaLng;
@@ -257,9 +261,10 @@ function mainMap(array) {
 
 // Sort data by name
 function sortName() {
-  console.log(data);
   $.each( data, function( key, value ) {
     data.sort(function(a,b){
+      // First convert strint to lower case
+      // then compare and sort
       var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
       if (nameA < nameB)
         return -1 
@@ -273,7 +278,6 @@ function sortName() {
 
 // Sort data by rate
 function sortRate() {
-  console.log(data);
   $.each( data, function( key, value ) {
     data.sort(function(a,b){
       var rateA = a.rating, rateB = b.rating
@@ -286,8 +290,6 @@ function sortRate() {
   });
   render(data);
 }
-
-
 
 // Facebook like and share
 (function(d, s, id) {

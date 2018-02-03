@@ -322,6 +322,24 @@ h1, h2, h3, h4, h5 {
   top: 5%;
   left: 9%; }
 
+footer {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #4A4E69; }
+
+footer span a {
+  color: #FFF;
+  font-size: 20px; }
+
+footer span a:visited,
+footer span a:hover,
+footer span a:active {
+  color: #ffbf43;
+  text-decoration: none; }
+
 @media screen and (min-width: 860px) {
   .text {
     font-size: 35px; }
