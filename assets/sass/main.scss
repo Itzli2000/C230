@@ -194,6 +194,24 @@ h1,h2,h3,h4,h5 {
  height: 150px;
  background-color: grey;
 }
+/*Sort buttons styles*/
+.namebtn,
+.ratebtn {
+  background: #4A4E69;
+  background: -webkit-linear-gradient(135deg, #22223B 0%, #4A4E69 50%);
+  background: linear-gradient(135deg, #22223B 0%, #4A4E69 50%);
+  transition: background 1s ease-in-out;
+  color: #FFF;
+  border: 1px solid #FFF;
+}
+.namebtn:hover,
+.ratebtn:hover {
+  cursor: pointer;
+  background: #22223B;
+  background: -webkit-linear-gradient(135deg, #4A4E69 10%,  #22223B 80%);
+  background: linear-gradient(135deg, #4A4E69  10%,  #22223B 80%);
+}
+
 /*Cards styles*/
 #cards {
   display: flex;

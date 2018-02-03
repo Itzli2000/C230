@@ -131,7 +131,6 @@ function render(data){
 function initMap(array) {
   $.each( array, function( key, value ) {
     var latLng = new google.maps.LatLng(array[key].split(",")[0], array[key].split(",")[1]);
-    console.log(latLng);
     var map = new google.maps.Map(document.getElementById('map-'+[key]), {
       zoom: 14,
       center: latLng
@@ -198,20 +197,24 @@ function mainMap(array) {
   });
 
   var markcount = 0;
-  var newarray = [];
   google.maps.event.addListener(map, 'click', function(event) {
     var result = [event.latLng.lat(), event.latLng.lng()];
     transition(result);
-  }).then(function(value) {
-    $.each( array, function( key, value ) {
-      if (map.getBounds().contains(latlngarray[i].getPosition())) 
+    getResult();
+  });
+
+
+  var newarray = [];
+  function getResult() {
+    $.each( data, function( key, value ) {
+      if (map.getBounds().contains(data.address.location.lat)) 
       {
         markcount = markcount + 1;
         newarray.push(latlngarray[i]);
       } 
     });
     console.log(newarray);
-  });
+  }
 
   // Move marker on map
   var numDeltas = 100;
@@ -252,6 +255,37 @@ function mainMap(array) {
   }
 }
 
+// Sort data by name
+function sortName() {
+  console.log(data);
+  $.each( data, function( key, value ) {
+    data.sort(function(a,b){
+      var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+      if (nameA < nameB)
+        return -1 
+      if (nameA > nameB)
+        return 1
+      return 0
+    });
+  });
+  render(data);
+}
+
+// Sort data by rate
+function sortRate() {
+  console.log(data);
+  $.each( data, function( key, value ) {
+    data.sort(function(a,b){
+      var rateA = a.rating, rateB = b.rating
+      if (rateA < rateB)
+        return -1 
+      if (rateA > rateB)
+        return 1
+      return 0
+    });
+  });
+  render(data);
+}
 
 
 
