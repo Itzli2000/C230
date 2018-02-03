@@ -106,6 +106,7 @@ function render(){
       <h4>${message.name}</h4>
       <a class="card-site" href="${message.contact.site}"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;${message.contact.site}</a>
       </div>
+      <div id="map-${index}" class="map"></div>
       <ul id="contact" class="list-group list-group-flush">
       <li class="list-group-item card-email"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;${message.contact.email}</li>
       <li class="list-group-item card-phone"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;${message.contact.phone}</li>
@@ -123,16 +124,21 @@ function render(){
       `);
   }).join('  ');
   document.getElementById('cards').innerHTML = html;
+  initMap(latlngarray);
 }
 
-function initMap() {
-  var uluru = {lat: -25.363, lng: 131.044};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: uluru
-  });
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
+function initMap(array) {
+  $.each( array, function( key, value ) {
+    console.log(array);
+    var latLng = new google.maps.LatLng(array[key].split(",")[0], array[key].split(",")[1]);
+    console.log(latLng);
+    var map = new google.maps.Map(document.getElementById('map-'+[key]), {
+      zoom: 14,
+      center: latLng
+    });
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map
+    });
   });
 }
