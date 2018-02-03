@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Front-end Test</title>
+  <!-- Facebook Open Graph tags -->
+  <meta property="og:url"           content="http://www.arielmolinadevelopment.com" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Mi page" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="hhttp://www.arielmolinadevelopment.com/assets/images/avatar.jpg" />
   <!-- Icons -->
   <link rel="shortcut icon" href="favicon.ico" type="icon/x-icon"/>
   <link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png"/>
@@ -26,6 +32,7 @@
   <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
+  <div id="fb-root"></div>
 
   <nav id="mainNav" class="navbar navbar-expand-md navbar-light bg-light fixed-top">
     <a id="logo" class="navbar-brand" href="#mainBanner">
@@ -112,6 +119,9 @@
     <p class="text-justify">Solo baja un poco más y podrás revisar nuestro listado de restaurantes; escoge el que más te guste y revisa su información de contacto.</p>
     <p class="text-center h4">¡Vamos!</p>
   </div>
+  <div class="p-5 m-5" id="recom">
+    <div class="fb-like mx-auto" data-href="http://www.arielmolinadevelopment.com" data-width="500px" data-layout="standard" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+  </div>
   <div class="container-fluid pt-3" id="Rest">
     <h1 class="text-center text-uppercase">Restaurantes</h1>
     <div class="how-cont d-flex justify-content-center align-items-center my-2 mx-auto">
@@ -119,6 +129,9 @@
     </div>
     <!-- <div id="map"></div> -->
     <div id="cards"></div>
+  </div>
+  <div id="search">
+    <div id="map" class="map"></div>
   </div>
   <div class="container-fluid" id="Contact"></div>
 
@@ -130,7 +143,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC79hr8ujJU1s-nOh1QT27MPHWp6qtW7s4">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBApmhZTMMnjFrMc98fH0z1rzTGTHs0Pyc">
   </script>
   <script src="https://use.fontawesome.com/6abcd39b3b.js"></script>
   <script src="assets/js/main.js" type="text/javascript"></script>

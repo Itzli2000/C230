@@ -1,4 +1,5 @@
 var data;
+// mainMap();
 
 // Function to manage slider
 var slideIndex = 0;
@@ -88,7 +89,6 @@ txtFile.onreadystatechange = function() {
       var stringArray = (new Function("return [" + string+ "];")());
       var objectStringArray = (new Function("return " + allText+ ";")());
       data = objectStringArray;
-      console.log(data);
       render(data);
     }
   }
@@ -124,12 +124,11 @@ function render(){
       `);
   }).join('  ');
   document.getElementById('cards').innerHTML = html;
-  initMap(latlngarray);
+  // initMap(latlngarray);
 }
 
 function initMap(array) {
   $.each( array, function( key, value ) {
-    console.log(array);
     var latLng = new google.maps.LatLng(array[key].split(",")[0], array[key].split(",")[1]);
     console.log(latLng);
     var map = new google.maps.Map(document.getElementById('map-'+[key]), {
@@ -142,3 +141,27 @@ function initMap(array) {
     });
   });
 }
+
+function mainMap(array) {
+  var uluru = {lat: 19.44005705371313, lng: -99.12704709742486};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+}
+
+
+
+
+// Facebook like and share
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.12';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
