@@ -177,11 +177,11 @@ h1, h2, h3, h4, h5 {
 
 /*Recomendation section styles*/
 #recom span {
-  width: 500px !important;
+  width: 300px !important;
   height: 50px !important; }
 
 #recom span iframe {
-  width: 500px !important;
+  width: 100% !important;
   height: 50px !important; }
 
 #map {
