@@ -149,12 +149,13 @@ function initMap(array) {
 // Map to show all positions, on search section
 function mainMap(array) {
   var uluru = {lat: 19.44005705371313, lng: -99.12704709742486};
+  var resarray = [];
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: uluru
   });
   // First marker
-  var marker = new google.maps.Marker({
+  var mainmarker = new google.maps.Marker({
     position: uluru,
     map: map
   });
@@ -192,6 +193,7 @@ function mainMap(array) {
       position: latLng,
       map: map
     });
+    resarray.push(marker);
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
@@ -201,26 +203,31 @@ function mainMap(array) {
   google.maps.event.addListener(map, 'click', function(event) {
     var result = [event.latLng.lat(), event.latLng.lng()];
     transition(result);
-    // getResult();
+    return getResult(resarray);
   });
 
 
   // Function to show restaurants on circle area
-  var newarray = [];
-  function getResult() {
-    $.each( data, function( key, value ) {
-      if (map.getBounds().contains(data.address.location.lat)) 
-      {
-        markcount = markcount + 1;
-        newarray.push(latlngarray[i]);
-      } 
-    });
-    console.log(newarray);
+  function getResult(res) {
+    var newarray = [];
+    var cont = 0;
+    console.log(res);
+    for (var i = 0; i < res.length; i++) {
+      if (map.getBounds().contains(res[i].getPosition())) {
+        newarray.push(res[i]);
+        cont = cont +1;
+        console.log(res.length);
+        console.log(newarray);
+      }
+      else {
+        console.log('not in circle');
+      }
+    }
   }
 
   // Move marker on map
   var numDeltas = 100;
-  var delay = 10;
+  var delay = 5;
   var i = 0;
   var deltaLat;
   var deltaLng;
@@ -239,8 +246,8 @@ function mainMap(array) {
     currpos[0] += deltaLat;
     currpos[1] += deltaLng;
     var latlng = new google.maps.LatLng(currpos[0], currpos[1]);
-    marker.setTitle("Latitude:"+currpos[0]+" | Longitude:"+currpos[1]);
-    marker.setPosition(latlng);
+    mainmarker.setTitle("Latitude:"+currpos[0]+" | Longitude:"+currpos[1]);
+    mainmarker.setPosition(latlng);
     Circle.setMap(null);
     Circle = new google.maps.Circle({
       strokeColor: '#FF0000',
@@ -250,7 +257,7 @@ function mainMap(array) {
       fillOpacity: 0.35,
       map: map,
       center: latlng,
-      radius: 100
+      radius: 200
     });
     if(i!=numDeltas){
       i++;

@@ -3,6 +3,10 @@ body {
   background: -webkit-linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
+#bodyContainer {
+  max-width: 1500px;
+  margin: 0 auto;
+}
 h1,h2,h3,h4,h5 {
   color: #4B498D;
   margin-top: 0;
@@ -13,6 +17,10 @@ h1,h2,h3,h4,h5 {
   margin: 0 auto;
 }
 /*Styles for menu items*/
+#mainNav {
+  max-width: 1500px;
+  margin: 0 auto;
+}
 #mainNav a {
   font-weight: bold;
 }
@@ -176,6 +184,9 @@ h1,h2,h3,h4,h5 {
   height: auto;
 }
 /*Recomendation section styles*/
+#recomCard {
+  width: 17rem;
+}
 #recom span {
   width: 300px !important;
   height: 50px !important;
@@ -354,6 +365,10 @@ footer span a:active {
     font-size: 15px;
     margin: 10px auto;
     text-transform: initial;
+  }
+  /*Recomendation section styles*/
+  #recomCard {
+    width: 19rem;
   }
 }
 
